@@ -1,0 +1,36 @@
+header{
+    background-color:aquamarine;
+    margin-top: 0px;
+    height:150px;
+    border-radius: 25px;
+    
+}
+footer{
+    border-radius: 25px;
+    background-color: green;
+    margin-top: 25%;
+    height:150px;
+    width:100%;
+    background-size: 100%;
+}
+h1{
+    text-align: center;
+}
+.a {
+    border-radius: 25px;
+    position: absolute;
+    left: 7px;
+    width: 40%;
+    height: 50%;
+    border: 3px solid orange;
+    background-color: orange;
+  } 
+  .b {
+    border-radius: 25px;
+    position: absolute;
+    right: 7px;
+    width: 58%;
+    height: 50%;
+    border: 3px solid gray;
+    background-color: gray;
+  } 
