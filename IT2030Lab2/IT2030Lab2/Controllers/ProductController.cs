@@ -12,7 +12,6 @@ namespace IT2030Lab2.Controllers
         public ActionResult Index(String Product)
         {
             return View();
-
         }
         //
         // GET: /Product/Browse
