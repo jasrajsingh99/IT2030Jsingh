@@ -26,6 +26,18 @@
         <th>
             @Html.DisplayNameFor(model => model.CourseObject)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedCampus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentSemester)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentYear)
+        </th>
         <th></th>
     </tr>
 
@@ -46,10 +58,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.CourseObject)
         </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </th>                         
+        <th>                          
+            @Html.DisplayFor(modelItem => item.AssignedCampus)
+        </th>                         
+        <th>                          
+            @Html.DisplayFor(modelItem => item.EnrollmentSemester)
+        </th>                         
+        <th>                          
+            @Html.DisplayFor(modelItem => item.EnrollmentYear)
+        </th>                     
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EnrollmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentId })
         </td>
     </tr>
 }
