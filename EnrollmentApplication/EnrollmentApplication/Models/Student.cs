@@ -20,5 +20,17 @@ namespace EnrollmentApplication.Models
         [StringLength(50, ErrorMessage = "Please enter a valid name")]
         public virtual string lastName { get; set; }
 
+       [MinimumAge (20)]
+       //[MinimumAge]
+        public virtual int Age { get; set; }
+
+
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string Zipcode { get; set; }
+        public string State { get; set; }
+
+
     }
 }

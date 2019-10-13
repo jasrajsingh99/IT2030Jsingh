@@ -29,6 +29,8 @@ namespace EnrollmentApplication.Models
 
         [Required(ErrorMessage = "Required Field")]
         [StringLength(3000,MinimumLength = 2018, ErrorMessage = "Cannot be less than 2018")]
-        public virtual int EnrollmentYear { get; set; }
+        public virtual string EnrollmentYear { get; set; }
+
+        public virtual string Notes { get; set; }
     }
 }
