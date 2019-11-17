@@ -19,6 +19,7 @@ namespace MvcMusicStore.Models
         {
         }
 
+        public static object Genre { get; internal set; }
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Album> Albums { get; set; }
 
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Artist> Artists { get; set; }
