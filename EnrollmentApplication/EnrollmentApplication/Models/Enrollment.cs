@@ -31,6 +31,6 @@ namespace EnrollmentApplication.Models
         [StringLength(3000,MinimumLength = 2018, ErrorMessage = "Cannot be less than 2018")]
         public virtual string EnrollmentYear { get; set; }
 
-        public virtual string Notes { get; set; }
+        public virtual string Notes { get; set; } 
     }
 }

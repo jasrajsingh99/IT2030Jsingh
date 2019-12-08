@@ -15,20 +15,13 @@ namespace MvcMusicStore.Controllers
     {
 
         private MusicStoreDB db = new MusicStoreDB();
+        //MvcMusicStoreDB db = new MvcMusicStoreDB();
 
         // GET: Store
+        [HttpGet]
         public ActionResult Index(int? id   )
         {
-            Genre genre = db.Genres.Find();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Album album = db.Albums.Find(id);
-            if (album == null)
-            {
-                return HttpNotFound();
-            }
+            var genre = db.Genres.ToListAsync(  );
             return View(genre);
         }
 
@@ -36,10 +29,11 @@ namespace MvcMusicStore.Controllers
         [HttpGet]
         public ActionResult Browse()
         {
-            ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");
-            Genre genre = db.Genres.Find();
-            //var genre = MusicStoreDB.Genre.ToList();
-
+            //ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");
+            //Genre genre = db.Genres.Find();
+            var genre = db.Genres.ToList();
+            //var genreModel = db.Genres.Include("Albums").Single(g => g.Name == genre);
+            //var genre = db.Genres.Find();
 
             return View(genre);
         }
@@ -48,7 +42,9 @@ namespace MvcMusicStore.Controllers
         [HttpGet]
         public ActionResult Details(int? id)
         {
-            Album album = db.Albums.Find(id);
+            //Album album = db.Albums.Find(id);
+            //var album = new Album { Title = "Album " + id };
+            var album = db.Albums.Find(id);
             return View(album);
         }
 

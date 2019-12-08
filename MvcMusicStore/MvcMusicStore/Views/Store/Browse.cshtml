@@ -2,50 +2,15 @@
 @{
     ViewBag.Title = "Browse";
 }
-
-<h2>Browse</h2>
-
+<h5>Content Body</h5>
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    Browse By Genre
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GenreId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Albums)
-        </th>
-
-        <th></th>
-    </tr>
-
-
-    @foreach (var item in Model)
+<ul>
+    @foreach (var genre in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Albums)
-            </td>
-
-            <td>
-                @Html.ActionLink("Browse", "Edit", new { id = item.GenreId })
-            </td>
-        </tr>
+        <!---->
+        <li>@Html.ActionLink(genre.Name, "Index", new { genre = genre.GenreId })</li>
     }
-</table>
+</ul>
