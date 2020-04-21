@@ -10,7 +10,7 @@ namespace New_Lab2_IT2030.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/Other/Details.cshtml");
         }
 
         public ActionResult About()
