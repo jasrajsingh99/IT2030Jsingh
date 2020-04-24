@@ -14,25 +14,6 @@ namespace EnrollmentApplication.Controllers
     {
         private EnrollmentDB db = new EnrollmentDB();
 
-
-        public ActionResult StudentOfTheMonth()
-        {
-            var student = GetStudentOfTheMonth();
-            return PartialView("_StudentOfTheMonth", student);
-        }
-
-        //find student
-        private object GetStudentOfTheMonth()
-        {
-            var student = db.Students
-                .OrderBy(a => System.Guid.NewGuid())
-                .First();
-
-            return student;
-        }
-
-
-
         // GET: Enrollment
         public ActionResult Index()
         {
@@ -65,7 +46,7 @@ namespace EnrollmentApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EnrollmentId,StudentId,CourseId,Grade,StudentObject,CourseObject,IsActive,AssignedCampus,EnrollmentSemester,EnrollmentYear")] Enrollment enrollment)
+        public ActionResult Create([Bind(Include = "EnrollmentId,StudentId,CourseId,Grade,StudentObject,CourseObject")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +78,7 @@ namespace EnrollmentApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentId,StudentId,CourseId,Grade,StudentObject,CourseObject,IsActive,AssignedCampus,EnrollmentSemester,EnrollmentYear")] Enrollment enrollment)
+        public ActionResult Edit([Bind(Include = "EnrollmentId,StudentId,CourseId,Grade,StudentObject,CourseObject")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -142,7 +123,5 @@ namespace EnrollmentApplication.Controllers
             }
             base.Dispose(disposing);
         }
-
-       
     }
 }
