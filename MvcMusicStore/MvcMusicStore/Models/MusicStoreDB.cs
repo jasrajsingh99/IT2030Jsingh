@@ -19,7 +19,6 @@ namespace MvcMusicStore.Models
         {
         }
 
-        public static object Genre { get; internal set; }
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Album> Albums { get; set; }
 
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Artist> Artists { get; set; }
@@ -27,7 +26,5 @@ namespace MvcMusicStore.Models
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Genre> Genres { get; set; }
 
         public System.Data.Entity.DbSet<MvcMusicStore.Models.Order> Orders { get; set; }
-
-        public System.Data.Entity.DbSet<MvcMusicStore.Models.Cart> Carts { get; set; }
     }
-} 
+}

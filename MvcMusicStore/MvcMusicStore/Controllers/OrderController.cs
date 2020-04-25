@@ -46,7 +46,7 @@ namespace MvcMusicStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,OrderDate,UserName,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total")] Order order)
+        public ActionResult Create([Bind(Include = "OrderId,OrderDate,Username,FirstName,LastName,Address,City,Street,PostalCode,Country,Phone,Email,Total")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace MvcMusicStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,OrderDate,UserName,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderId,OrderDate,Username,FirstName,LastName,Address,City,Street,PostalCode,Country,Phone,Email,Total")] Order order)
         {
             if (ModelState.IsValid)
             {
