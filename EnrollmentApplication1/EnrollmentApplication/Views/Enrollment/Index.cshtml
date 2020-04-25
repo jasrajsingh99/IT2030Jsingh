@@ -1,0 +1,97 @@
+﻿@model IEnumerable<EnrollmentApplication.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id=" ="studentofthemonth">
+    @Ajax.ActionLink("Click here for student of the month!",
+    "StudentOfTheMonth",
+    null,
+    new AjaxOptions
+    {
+        UpdateTargetId = "studentofthemonth",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET"
+    },
+    new { @class = "btn btn-primary" })
+
+</div>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentObject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseObject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedCampus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentSemester)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentYear)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentObject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseObject)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.AssignedCampus)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.EnrollmentSemester)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.EnrollmentYear)
+            </th>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EnrollmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentId })
+            </td>
+        </tr>
+    }
+
+</table>

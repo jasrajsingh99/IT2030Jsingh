@@ -51,6 +51,22 @@
             @Html.DisplayFor(model => model.CourseObject)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.EnrollmentSemester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnrollmentSemester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnrollmentYear)
+        </dt>
+
+        <dd>
+            @Html.TextBoxFor(model => model.EnrollmentYear)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
