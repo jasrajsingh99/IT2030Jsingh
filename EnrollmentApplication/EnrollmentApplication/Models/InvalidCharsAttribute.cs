@@ -20,7 +20,11 @@ namespace EnrollmentApplication.Models
 
             if (value != null)
             {
-                if ((string)value == "*")
+
+                if //(value.ToString().Contains("*"))
+                //(invalidChars.IndexOf("*") >=0)
+                //(invalidChars.Contains("*"))
+                 ((string)value == invalidChars)
                 {
                     var errormessage = FormatErrorMessage(validationContext.DisplayName);
 

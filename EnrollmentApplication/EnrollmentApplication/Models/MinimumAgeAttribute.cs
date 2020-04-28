@@ -6,32 +6,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EnrollmentApplication.Models
 {
-    public class InvalidCharsAttribute : ValidationAttribute
+    public class MinimumAgeAttribute : ValidationAttribute
     {
-        readonly string invalidChars;
+        readonly int minimumAge;
 
-        public InvalidCharsAttribute(string invalidChars) : base("{0} Notes contains unacceptable characters!” ")
+        public MinimumAgeAttribute(int minumumAge) : base("{0} less than the minimum")
         {
-            this.invalidChars = invalidChars;
+            this.minimumAge = minimumAge;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-
             if (value != null)
             {
-                if ((string)value == "*")
+                if ((int)value < 20)
                 {
                     var errormessage = FormatErrorMessage(validationContext.DisplayName);
 
                     return new ValidationResult(errormessage);
                 }
-
             }
 
             return ValidationResult.Success;
             //return base.IsValid(value, validationContext);
         }
     }
-
 }

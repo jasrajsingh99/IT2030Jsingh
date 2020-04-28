@@ -32,5 +32,8 @@ namespace EnrollmentApplication.Models
 
         [Range(typeof(int), "2018", "2022", ErrorMessage = "The date cannot be before 2018")]
         public virtual int EnrollmentYear { get; set; }
+
+        [InvalidChars("*", ErrorMessage = "Notes contains one or more invalid character")]
+        public virtual string Notes { get; set; }
     }
 }
