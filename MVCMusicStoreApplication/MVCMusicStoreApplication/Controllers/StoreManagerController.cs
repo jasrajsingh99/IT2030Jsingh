@@ -14,6 +14,40 @@ namespace MVCMusicStoreApplication.Controllers
     {
         private MVCMusicStoreDB db = new MVCMusicStoreDB();
 
+
+        public ActionResult DailyDeal()
+        {
+            var album = GetDailyDeal();
+            return PartialView("_DailyDeal", album);
+        }
+
+        //Select album and give it a 50 percent discount
+        //Object works if its just one
+        private object GetDailyDeal()
+        {
+            //Get a random album
+            var album = db.Albums
+                .OrderBy(a => System.Guid.NewGuid())
+                .First();
+
+            //apply a 50% discount
+            album.Price *= 0.5m;
+            return album;
+        }
+
+        public ActionResult ArtistSearch(string q)
+        {
+            var artists = GetArtist(q);
+            return PartialView("_ArtistSearch", artists);
+        }
+
+        private List<Artist> GetArtist(string searchString)
+        {
+            return db.Artists
+                .Where(a => a.Name.Contains(searchString))
+                .ToList();
+        }
+
         // GET: StoreManager
         public ActionResult Index()
         {
@@ -49,7 +83,7 @@ namespace MVCMusicStoreApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl, InStock, CountryOfOrigin")] Album album)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +119,7 @@ namespace MVCMusicStoreApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl, InStock, CountryOfOrigin, InStock, CountryOfOrigin")] Album album)
         {
             if (ModelState.IsValid)
             {

@@ -23,6 +23,9 @@ namespace EnrollmentApplication.Models
         [InvalidChars("*", ErrorMessage = "Last name contains an invalid character.")]
         public virtual string lastName { get; set; }
 
+       
+       
+
         //[MinimumAge(20)]
         [MinimumAge(20)]
         public virtual int Age { get; set; }
@@ -31,7 +34,7 @@ namespace EnrollmentApplication.Models
         public string Address2 { get; set; }
         public string City { get; set; }
 
-        [StringLength(5)]
+        //[StringLength(5)]
         public string Zipcode { get; set; }
 
         [StringLength(2)]
@@ -51,14 +54,18 @@ namespace EnrollmentApplication.Models
             {
                 yield return (new ValidationResult("Please enter a 2 digit State"));
             }
-           
+
             //Check if Zipcode is 5 digits long. Otherwise show an error message “Enter a 5 digit Zipcode” 
-            if (Zipcode.Length > 5 || Zipcode.Length < 5)
-                {
-                yield return (new ValidationResult("Please enter a 5 digit zipcode"));
+            //if (Zipcode.Length > 5 || Zipcode.Length < 5)
+            //    {
+            //    yield return (new ValidationResult("Please enter a 5 digit zipcode"));
+            // }
+            if (Zipcode.Split(' ').Length > 5)
+            {
+                yield return (new ValidationResult("Your description is too verbose"));
             }
-           
-            throw new NotImplementedException();
+
+            //throw new NotImplementedException();
         }
     }
 }

@@ -14,6 +14,32 @@ namespace EnrollmentApplication.Controllers
     {
         private EnrollmentDB db = new EnrollmentDB();
 
+        public ActionResult StudentSearch(string q)
+        {
+            var students = GetStudent(q);
+            return PartialView("_StudentSearch", students);
+        }
+
+        private List<Student> GetStudent(string searchString)
+        {
+            return db.Students
+                .Where(a => a.firstName.Contains(searchString) || a.lastName.Contains(searchString))
+                .ToList();
+        }
+
+        public ActionResult CourseSearch(string q)
+        {
+            var courses = GetCourse(q);
+            return PartialView("_CourseSearch", courses);
+        }
+
+        private List<Course> GetCourse(string searchString)
+        {
+            return db.Courses
+                .Where(a => a.Title.Contains(searchString) || a.Description.Contains(searchString))
+                .ToList();
+        }
+
         // GET: Enrollment
         public ActionResult Index()
         {
