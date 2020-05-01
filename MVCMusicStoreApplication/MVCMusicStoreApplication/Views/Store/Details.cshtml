@@ -1,0 +1,35 @@
+﻿ Album album = db.Albums.Find(id);
+@{
+    ViewBag.Title = "Details";
+}
+
+<!--I know having multiple break statements isn't as effcient as putting on
+    a margin, but for my screen's resolution they gave me the desired look to
+    imitate the screenshots.-->
+<br /><br /><br /><br />
+<img src="~/Content/Images/logo.png" alt="Record_clip_art" />
+<h1>ASP.NET MVC MUSIC STORE</h1>
+<hr style="height:1px;border:none;color:#333;background-color:#333;" />
+<h2>Content Body</h2>
+
+<h2><b><i>Details</i></b></h2>
+<br />
+<h2><b><i>Frank</i></b></h2>
+
+
+<p>
+    <img alt="@Model.Title" src="@Url.Content(Model.AlbumArtUrl)" />
+</p>
+
+<p>
+    <em>Artist:</em>
+    @Model.Artist.Name
+</p>
+<p>
+    <em>Price:</em>
+    @String.Format("{0:F}", Model.Price)
+</p>
+@Html.ActionLink("Add to cart", "AddToCart",
+"ShoppingCart",
+new {id = Model.AlbumId },
+new { @class = "btn btn-primary"})

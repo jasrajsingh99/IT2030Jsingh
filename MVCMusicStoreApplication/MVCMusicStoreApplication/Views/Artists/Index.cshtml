@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVCMusicStoreApplication.Models.Artist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--I know having multiple break statements isn't as effcient as putting on
+    a margin, but for my screen's resolution they gave me the desired look to
+    imitate the screenshots.-->
+<br /><br /><br /><br />
+<img src="~/Content/Images/logo.png" alt="Record_clip_art" />
+<h1>ASP.NET MVC MUSIC STORE</h1>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ArtistId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ArtistId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ArtistId })
+            </td>
+        </tr>
+    }
+
+</table>
