@@ -11,11 +11,16 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.eventType)
+            @Html.DisplayNameFor(model => model.EventName)
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventName)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.eventType }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventTypeId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

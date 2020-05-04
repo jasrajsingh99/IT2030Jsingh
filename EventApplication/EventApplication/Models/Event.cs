@@ -1,56 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace EventApplication.Models
 {
-    public class Event
+    public class Event : IValidatableObject
     {
         [Key]
-        [Required]
-        [StringLength(50, ErrorMessage = "The title must be under 50 characters")]
-        public string Title { get; set; }
-
-        [StringLength(150, ErrorMessage = "The description must be under 150 characters")]
-        public string Description { get; set; }
-
-        [DisplayName("Start Date")]
-        [Required(ErrorMessage = "Start date is invalid because it exists in the past")]
-        public DateTime StartDate { get; set; }
-       
-        [Required]
-        [DisplayName("Start Time")]
-        public DateTime StartTime { get; set; }
+        public virtual int EventId { get; set; }
 
         [Required]
-        [DisplayName("End Date")]
-        public DateTime EndDate { get; set; }
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "The title cannot exceed 50 characters.")]
+        public virtual string Title { get; set; }
 
-        [Required]
-        [DisplayName("End Time")]
-        public DateTime EndTime { get; set; }
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "The description cannot exceed 150 characters.")]
+        public virtual string Description { get; set; }
 
-        [Required]
-        public string Location { get; set; }
-        public string eventType { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public virtual DateTime StartDate { get; set; }
 
-        [Required]
-        [DisplayName("Organizers Name")]
-        public string OrganizerName { get; set; }
-        [DisplayName("Contact Info")]
-        public string ContactInfo { get; set; }
+        public virtual string StartTime { get; set; }
 
-        [Required]
-        [DisplayName("Maximum Tickets")]
-        [MinLength(1, ErrorMessage = "The maximum amount of tickets cannot be 0")]
-        public int MaxTickets { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public virtual DateTime EndDate { get; set; }
 
-        [Required]
-        [DisplayName("Tickets Available")]
-        [MinLength(1, ErrorMessage = "The amount of available tickets cannot be 0")]
-        public int AvailableTickets { get; set; }
+        public virtual string EndTime { get; set; }
+
+        public virtual string Location { get; set; }
+
+        public virtual EventType EventType { get; set; }
+
+        public virtual string OrganizerName { get; set; }
+
+        public virtual string Number { get; set; }
+
+        public virtual int MaxTickets { get; set; }
+                       
+        public virtual int TicketsAvailable { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var today = DateTime.Now;
+            var yesterday = today.AddDays(-1);
+
+            if (StartDate < yesterday)
+            {
+                yield return (new ValidationResult("Remember: you cannot have an event in the past!"));
+            }
+
+            if (EndDate < yesterday)
+            {
+                yield return (new ValidationResult("Remember: you cannot have an event in the past!"));
+            }
+
+            if (EndDate < StartDate)
+            {
+                yield return (new ValidationResult("The end of the event cannot exist before the start"));
+            }
+
+            if (MaxTickets < 1)
+            {
+                yield return (new ValidationResult("You can't have an event with no tickets!"));
+            }
+
+            if (TicketsAvailable < 1)
+            {
+                yield return (new ValidationResult("Your event must have at least 1 ticket available!"));
+            }
+
+            
+        }
     }
 }

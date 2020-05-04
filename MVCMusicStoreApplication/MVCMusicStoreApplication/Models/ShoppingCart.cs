@@ -59,7 +59,7 @@ namespace MVCMusicStoreApplication.Models
            //if (total.HasValue)
            //{
            //    return total.Value;
-           //}
+           //}  
            //else
            //{
            //    return decimal.Zero;

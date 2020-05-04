@@ -1,0 +1,16 @@
+﻿@model IEnumerable<EventApplication.Models.Event>
+
+<div id="searchresults2">
+    <ul>
+        @foreach (var item in Model)
+        {
+
+            <li><b> @Html.ActionLink(item.Title, "Details", "Event", new { id = item.EventId }) </b> </li>
+            <li>@item.StartDate </li>
+            <li>@item.Location </li>
+            <li><br /></li>
+        }
+    </ul>
+</div>
+
+

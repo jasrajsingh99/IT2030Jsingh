@@ -11,18 +11,21 @@
 </p>
 <table class="table">
     <tr>
-        <th> @Html.DisplayNameFor(model => model.eventType)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.eventType)
+            @Html.DisplayFor(modelItem => item.EventName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.eventType }) |
-            @Html.ActionLink("Details", "Details", new { id = item.eventType }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.eventType })
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventTypeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventTypeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventTypeId })
         </td>
     </tr>
 }

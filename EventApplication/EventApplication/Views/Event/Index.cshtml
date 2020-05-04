@@ -33,19 +33,16 @@
             @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.eventType)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.OrganizerName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactInfo)
+            @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MaxTickets)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AvailableTickets)
+            @Html.DisplayNameFor(model => model.TicketsAvailable)
         </th>
         <th></th>
     </tr>
@@ -74,24 +71,21 @@
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.eventType)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.OrganizerName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ContactInfo)
+            @Html.DisplayFor(modelItem => item.Number)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MaxTickets)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AvailableTickets)
+            @Html.DisplayFor(modelItem => item.TicketsAvailable)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.Title  }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.Title  }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.Title  })
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EventId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EventId })
         </td>
     </tr>
 }

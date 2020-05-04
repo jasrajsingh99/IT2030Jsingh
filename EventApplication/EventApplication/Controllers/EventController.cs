@@ -1,53 +1,23 @@
-﻿using EventApplication.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Net;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using EventApplication.Models;
 
 namespace EventApplication.Controllers
 {
     public class EventController : Controller
     {
-        private EventDbContext db = new EventDbContext();
+        private EventDB db = new EventDB();
 
-        //create, index, edit, details, delete 
         // GET: Event
         public ActionResult Index()
         {
-            //return View(db.Events.ToList());
-           // var events = db.Events.Include(c => c.eventType);
             return View(db.Events.ToList());
-            //return View();
-            //return View(events.ToList());
-        }
-
-
-        // GET: Event/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-        //"Title,description,StartDate,StartTime,EndDate,EndTime,Location,eventType,OrganizerName,ContactIndo,MaxTickets,AvailableTickets"
-        // POST: Order/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Create([Bind(Include = "Title,description,StartDate,StartTime,EndDate,EndTime,Location,eventType,OrganizerName,ContactIndo,MaxTickets,AvailableTickets")] Event eventt)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Events.Add(eventt);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(eventt);
         }
 
         // GET: Event/Details/5
@@ -57,12 +27,35 @@ namespace EventApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event eventt = db.Events.Find(id);
-            if (eventt == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(eventt);
+            return View(@event);
+        }
+
+        // GET: Event/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Event/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "EventId,Title,Description,StartDate,StartTime,EndDate,EndTime,Location,OrganizerName,Number,MaxTickets,TicketsAvailable")] Event @event)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Events.Add(@event);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(@event);
         }
 
         // GET: Event/Edit/5
@@ -72,12 +65,12 @@ namespace EventApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event eventt = db.Events.Find(id);
-            if (eventt == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(eventt);
+            return View(@event);
         }
 
         // POST: Event/Edit/5
@@ -85,15 +78,15 @@ namespace EventApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Title,description,StartDate,StartTime,EndDate,EndTime,Location,eventType,OrganizerName,ContactIndo,MaxTickets,AvailableTickets")] Event eventt)
+        public ActionResult Edit([Bind(Include = "EventId,Title,Description,StartDate,StartTime,EndDate,EndTime,Location,OrganizerName,Number,MaxTickets,TicketsAvailable")] Event @event)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eventt).State = EntityState.Modified;
+                db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventt);
+            return View(@event);
         }
 
         // GET: Event/Delete/5
@@ -103,12 +96,12 @@ namespace EventApplication.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event eventt = db.Events.Find(id);
-            if (eventt == null)
+            Event @event = db.Events.Find(id);
+            if (@event == null)
             {
                 return HttpNotFound();
             }
-            return View(eventt);
+            return View(@event);
         }
 
         // POST: Event/Delete/5
@@ -116,8 +109,8 @@ namespace EventApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event eventt = db.Events.Find(id);
-            db.Events.Remove(eventt);
+            Event @event = db.Events.Find(id);
+            db.Events.Remove(@event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

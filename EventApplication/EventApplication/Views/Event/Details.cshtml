@@ -10,10 +10,14 @@
     <h4>Event</h4>
     <hr />
     <dl class="dl-horizontal">
-        
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -63,14 +67,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.eventType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.eventType)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.OrganizerName)
         </dt>
 
@@ -79,11 +75,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContactInfo)
+            @Html.DisplayNameFor(model => model.Number)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContactInfo)
+            @Html.DisplayFor(model => model.Number)
         </dd>
 
         <dt>
@@ -95,16 +91,17 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AvailableTickets)
+            @Html.DisplayNameFor(model => model.TicketsAvailable)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AvailableTickets)
+            @Html.DisplayFor(model => model.TicketsAvailable)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Title }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventId }) |
+    @Html.ActionLink("Register", "Order", new { id = Model.EventId })    |
+    @Html.ActionLink("Return Home", "Index")
 </p>
